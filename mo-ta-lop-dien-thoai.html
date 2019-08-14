@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var Mobile = function() {
+            this.statusMobile = function () {
+                if(this.status) {
+                    return ("Mobile is Turn On");
+                } else {
+                    return ("Mobile is Turn Off");
+                }
+            }
+            this.turnOn = function () {
+                this.status = true ;
+            }
+            this.turnOff = function () {
+                this.status = false ;
+            }
+            this.setBattery = function (energy) {
+                if ( this.status ) {
+                this.energy = energy;
+                this.energy >= 0 && this.energy <= 100 ;
+                }
+            }
+            this.rechargeBattery = function() {
+                setTimeout(function() {
+                    alert("Battery full");
+                }, (100 - this.energy)*1000);
+            }
+            this.decreaseEnergy = function () {
+                if (this.energy > 0) {
+                    this.energy--;
+                    if (this.energy == 0) {
+                        this.status = false;
+                    }
+                }
+            }
+            this.getEnergy = function () {
+                return this.energy;
+            }
+            this.makeMessage = function (message) {
+                if ( this.status ) {
+                this.message = message;
+                }
+            }
+            this.makingMessage = function () {
+                return this.message;
+            }
+            this.submit = function(submit) {
+                if(this.status) {
+                    this.submit = this.message;
+                    alert("Message was submit successfull!");
+                }
+            }
+            this.openSubmit = function() {
+                return this.submit;
+            }
+            this.getSubmit = function() {
+                return this.submit;
+            }
+            this.receiveMessage = function (receivemessage) {
+                if (this.status) {
+                this.receivemessage = receivemessage;
+                alert("You have new message!");
+              }
+            }
+            this.openReceive = function () {
+                return this.receivemessage;
+            }
+        };
+        let nokia = new Mobile();
+        alert("Nokia Status: " +nokia.statusMobile());
+        nokia.turnOn();
+        alert("Nokia Status: " +nokia.statusMobile());
+        nokia.setBattery(10);
+        alert("Nokia Battery: " + nokia.getEnergy());
+        nokia.makeMessage("Xin Chao!");
+        alert("Making Message: "+ nokia.makingMessage());
+        alert("Sending the message...!");
+        nokia.decreaseEnergy();
+        nokia.submit();
+        nokia.decreaseEnergy()
+        alert("Nokia Open Submit Message: "+nokia.openSubmit());
+        nokia.decreaseEnergy();
+        alert("Nokia Battery: " + nokia.getEnergy());
+        let iphone = new Mobile();
+        alert("Iphone Status: " + iphone.statusMobile());
+        iphone.turnOn();
+        alert("Iphone Status: " +iphone.statusMobile());
+        iphone.setBattery(5);
+        alert("iphone Battery: " + iphone.getEnergy());
+        iphone.receiveMessage(nokia.getSubmit());
+        iphone.decreaseEnergy();
+        alert("Open Receive Message: "+iphone.openReceive());
+        iphone.decreaseEnergy();
+        alert("Iphone Battery: " + iphone.getEnergy());
+        iphone.rechargeBattery();
+
+
+    </script>
+
+</body>
+
+</html>
